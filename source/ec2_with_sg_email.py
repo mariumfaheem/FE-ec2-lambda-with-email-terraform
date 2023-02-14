@@ -42,11 +42,10 @@ def lambda_handler(event, context):
             all_sg_ids = [sg['GroupId'] for sg in instance.security_groups]
             if RMD_CYBER_SECURITY not in all_sg_ids:
                 send_email_to_stalkholder(instance.id,action)
-            else:
-                if action=='True':
-                    print("action")
-                    all_sg_ids.append(RMD_CYBER_SECURITY)
-                    instance.modify_attribute(Groups=all_sg_ids)
+            if action=='True':
+                print("action")
+                all_sg_ids.append(RMD_CYBER_SECURITY)
+                instance.modify_attribute(Groups=all_sg_ids)
 
 
     return {
